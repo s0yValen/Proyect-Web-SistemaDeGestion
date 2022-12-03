@@ -1,0 +1,130 @@
+body, html {
+    height:  100%;
+    margin:  0px auto;
+    padding: 0px auto;
+  }
+body {
+    background-color: #d4f2ff;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+.Rectangle-1 {
+    display: flex;
+    width: 100%;
+    height: 8.5vw;
+    background-color: #1f4e77;
+    justify-content: center;
+    -webkit-box-shadow: 0px 11px 24px 1px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 11px 24px 1px rgba(0,0,0,0.39);
+    box-shadow: 0px 11px 24px 1px rgba(0,0,0,0.39);
+}
+
+
+.logo-1{
+    display: flex;
+    height: 6vw;
+    padding-top: 5%;
+    padding-right: auto;
+    padding-left: 5%;
+}
+
+.informacion{
+    display: flex;
+    align-items: center;
+    height: 58%;
+    justify-content: center;
+
+}
+
+ul {
+    list-style: none;
+    font-size: 1.5vw;
+
+}
+
+
+.imagen{
+display: flex;
+width: 35vw;
+display: inline-block;
+
+
+}
+
+.boton{
+    display: flex;
+    align-items: center;
+    height: 1%;
+    justify-content: center;
+
+}
+
+/*Diseño boton volver*/
+.volver{
+    transition: 0.35s;
+    margin: 1.3vw;
+    width: 13vw;
+    height: 2.3vw;
+    border-radius: 0.7vw;
+    box-shadow: 0 0.26vw 0.26vw 0 rgba(0, 0, 0, 0.25);
+    border: none;
+    background-color:  #05b593;
+    font-size: 0.9vw;
+    color:white;
+    cursor : pointer;
+  }
+
+.volver:hover{
+    background-color:  #0a8169;
+}
+
+
+
+
+
+.Rectangle-3 {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    min-height: 8%;
+    background-color: #1f4e77;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}
+
+.Rectangle-3 .iconos{
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+
+.Rectangle-3 .box{
+    display: flex;
+    justify-content: space-between  ;
+}
+
+.Rectangle-3 .box a{
+    display: flex;
+    text-decoration: none;
+    color: #4D8CC3;
+    font-size: 170%;
+    margin: auto;
+    padding-left: 15% ;
+    padding-right: 15%;
+}
+
+@media (min-height: 900px) and (max-width:1200px){
+    .Rectangle-1{
+        height: 20vw;
+    }
+    .logo-1{
+        height: 15vw;
+    }
+
+    .Rectangle-3{
+        display: none;
+    }
+
+}

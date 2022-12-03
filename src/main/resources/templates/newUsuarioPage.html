@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/c76afac88a.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <link rel="stylesheet" th:href="@{/newUsuarioPage.css}">
+
+    <title>Nuevo usuario</title>
+</head>
+
+<body>
+    <header class="Rectangle-1">
+        <a th:href="@{/}"><img class="logo-1" src="/src/logorecortada.png" alt=""></a>
+        <nav>
+            <label for="touch"><span><img class="login-1" src="/src/usuarios.png" alt=""></span></label>
+            <input type="checkbox" id="touch"> 
+            <ul class="slide">
+                <li class="nombreUsuario">[[${#httpServletRequest.remoteUser}]]</li>
+                <li><a th:href="@{/logout}"><button class="salir">Salir</button></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="op-1">
+        <label class="btn-menu" for="input-icono-menu">
+            <img class="img-btn-menu" src="/src/menu-icono.png">
+        </label>
+        <a th:href="@{/usuarios}" class="fa-solid fa-arrow-left" id="back"></a>
+    </div>
+    <h2>Sistema de gestión de <br> <span style="color: #04b593;"> Usuarios</span></h2>
+    <div class="Rectangle-2">
+        <form th:action="@{/guardarusuario}" th:object="${user}" method="post" class="form-1">
+            <p class="Text-1">Nuevo </span> <span style="color: #04b593;"> Usuario</span></p>
+            <br>
+            <label class="Text-2" for="nombre">Nombre :</label>
+            <input class="Input-1" type="text" th:field="*{nombre}" id="nombre" required="required">
+            <br>
+            <label class="Text-3" for="correo">Correo :</label>
+            <input class="Input-2" type="email" th:field="*{correo}" id="correo" required="required">
+            <br>
+            <label class="Text-6" for="password">Contraseña :</label>
+            <input class="Input-5" type="password" th:field="*{password}" id="password" required="required">
+            <br>
+            <label class="Text-4" for="estado">Estado :</label>
+            <select th:field="*{estado}" class="Input-6" type="text" id="estado" required="required">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+            </select>
+            <br>
+            <label class="Text-4" for="rol">Rol :</label>
+            <select th:field="*{rol}" class="Input-3" type="text" id="rol" required="required">
+                <option value="ROLE_USER">Operario</option>
+                <option value="ROLE_ADMIN">Administrador</option>
+            </select>
+            <br>
+            <label class="Text-5" for="empresa">Empresa :</label>
+            <select class="Input-4" type="text" th:field="*{empresa}" id="empresa" required="required">
+                <option th:each="empresa : ${emplist}" th:text="${empresa.nombre}" th:value="${empresa.id}"></option>
+            </select>
+            <input class="bto-2" type="submit" value="Crear usuario">
+        </form>
+    </div>
+
+    <!--menu lateral-->
+    <input type="checkbox" name="" id="input-icono-menu">
+    <div class="container-menu">
+        <div class="cont-menu">
+            <nav>
+                <a th:href="@{/empresas}">
+                    <img src="/src/empresas.png" alt="" srcset="">
+                    <h2>Empresas</h2>
+                </a>
+                <a th:href="@{/usuarios}">
+                    <img src="/src/usuariosM.png" alt="" srcset="">
+                    <h2>Usuarios</h2>
+                </a>
+                <a th:href="@{/movimientos}">
+                    <img id="img-movimiento" src="/src/dinero.png" alt="" srcset="">
+                    <h2>Ingresos <br> y Gastos</h2>
+                </a>
+            </nav>
+            <label for="input-icono-menu">
+                <img class="x-icon" src="/src/cerrar.png" alt="">
+            </label>
+        </div>
+    </div>
+
+    <footer class="Rectangle-3">
+        <div class="box">
+            <a href="#" class="fa fa-facebook" ></a>
+            <a href="#" class="fa fa-github"></a>
+            <a href="#" class="fa fa-whatsapp"></a>
+            <a href="#" class="fa fa-youtube"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-telegram"></a>
+        </div>
+    </footer>
+
+    <script th:inline="javascript">
+        window.onload = function(){
+            var msg = [[${msg}]];
+            if(msg == "saveERROR"){
+                Command : toastr["error"]("Hubo un problema al tratar de guardar el empleado")
+            } else if(msg == "saveREPEAT"){
+                Command : toastr["warning"]("El empleado no pudo ser creado, debido a que el correo ingresado ya existe")
+            }
+
+            toastr.options = {
+                "positionClass" : "toastr-top-right",
+                "showMethod" : "fadeIn",
+                "showDuration" : "250",
+                "hideMethod" : "fadeOut",
+            }
+        }
+    </script>
+
+</body>
+</html>

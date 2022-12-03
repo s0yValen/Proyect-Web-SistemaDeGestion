@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de empleados</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://kit.fontawesome.com/c76afac88a.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/viewMovimientosPage.css}">
+</head>
+<body>
+<!--Encabezado-->
+<header class="Rectangle-1">
+    <a th:href="@{/}"><img class="logo-1" src="../src/logorecortada.png" alt=""></a>
+    <!--Menu desplegable-->
+    <nav>
+        <label for="touch"><span><img class="login-1" src="../src/usuarios.png" alt=""></span></label>
+        <input type="checkbox" id="touch">
+        <ul class="slide">
+            <li class="nombreUsuario">[[${#httpServletRequest.remoteUser}]]</li>
+            <li><a th:href="@{/logout}"><button class="salir">Salir</button></a></li>
+        </ul>
+    </nav>
+</header>
+
+<!--Iconos para ingresar a las otras secciones-->
+
+<main>
+
+    <div class="nav">
+        <label class="btn-menu" for="input-icono-menu">
+            <img class="img-btn-menu" src="../src/menu-icono.png">
+        </label>
+        <h2 class="title">Sistema de gestión de<span style="color: #04b593;"> Usuarios</span></h2>
+        <button id="btn-nuevo" ><a th:href="@{/nuevousuario}">Nuevo</a></button>
+    </div>
+
+    <table class="datable">
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Empresa</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Creacion</th>
+            <th>Actualizacion</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="user : ${usuarioslist}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.nombre}"></td>
+            <td th:text="${user.correo}"></td>
+            <td th:text="${user.empresa.nombre}"></td>
+            <td th:text="${user.rol.name}"></td>
+            <td th:if="${user.estado==true}">Activo</td>
+            <td th:if="${user.estado==false}">Inactivo</td>
+            <td th:text="${#temporals.format(user.fechaCreacion, 'dd-MMM-yyyy HH:mm')}"></td>
+            <td th:text="${#temporals.format(user.fechaActualizacion, 'dd-MMM-yyyy HH:mm')}"></td>
+            <td><button class="btn-table btn-table-editar"><a th:href="@{/editarusuario/{id}(id=${user.id})}">Editar</a></button></td>
+            <td><button class="btn-table btn-table-eliminar"><a th:href="@{/eliminarusuario/{id}(id=${user.id})}">Eliminar</a></button></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <nav aria-label="Seleccion de pagina">
+        <ul class="pagination">
+            <li th:each="page, status: ${pages}">
+                <a th:href="@{/usuarios/(page=${status.index})}" th:text="${status.index}+1">1</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!--menu lateral-->
+    <input type="checkbox" name="" id="input-icono-menu">
+    <div class="container-menu">
+        <div class="cont-menu">
+            <nav>
+                <a th:href="@{/empresas}">
+                    <img src="../src/empresas.png" alt="" srcset="">
+                    <h2>Empresas</h2>
+                </a>
+                <a th:href="@{/usuarios}">
+                    <img src="../src/usuariosM.png" alt="" srcset="">
+                    <h2>Usuarios</h2>
+                </a>
+                <a th:href="@{/movimientos}">
+                    <img id="img-movimiento" src="../src/dinero.png" alt="" srcset="">
+                    <h2>Ingresos <br> y Gastos</h2>
+                </a>
+            </nav>
+            <label for="input-icono-menu">
+                <img class="x-icon" src="../src/cerrar.png" alt="">
+            </label>
+        </div>
+    </div>
+
+</main>
+
+<footer class="Rectangle-3">
+    <div class="box">
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-github"></a>
+        <a href="#" class="fa fa-whatsapp"></a>
+        <a href="#" class="fa fa-youtube"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-telegram"></a>
+    </div>
+</footer>
+
+<script th:inline="javascript">
+    window.onload = function(){
+        var msg = [[${msg}]];
+        if(msg == "saveOK"){
+            Command : toastr["success"]("El empleado fue guardado correctamente")
+        } else if(msg == "updtOK"){
+            Command : toastr["success"]("El empleado fue actualizado correctamente")
+        } else if(msg == "dltOK"){
+            Command : toastr["warning"]("El empleado fue eliminado correctamente")
+        } else if(msg == "dltERROR"){
+            Command : toastr["error"]("Hubo un problema al tratar de eliminar el empleado")
+        }
+        toastr.options = {
+            "positionClass" : "toastr-top-right",
+            "showMethod" : "fadeIn",
+            "showDuration" : "250",
+            "hideMethod" : "fadeOut",
+        }
+    }
+</script>
+
+</body>
+</html>

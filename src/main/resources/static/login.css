@@ -1,0 +1,153 @@
+body, html {
+    height:  100%;
+    margin:  0px auto;
+    padding: 0px auto;
+}
+
+body {
+    background-image: url('https://static.vecteezy.com/system/resources/previews/002/104/157/original/healthcare-medical-technology-and-science-wallpaper-template-illustration-vector.jpg');
+    background-position: center center;
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%; 
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.02vw;
+}
+
+.wrapper {
+    text-align: center;
+    margin: 1%;
+    border-radius: 5px;
+    box-shadow: 0 0.5vw 1vw 0 rgba(0, 0, 0, 0.35);
+    background-color: #1f4e77;
+    float: right;
+    width: 50%;
+    height: 96%;
+}
+
+.logo {
+    width: 50%;
+    height: 50%;
+    margin: -13% auto -12%;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+}
+
+.wrapper_form {
+    text-align: center;
+    width: 23vw;
+    height: 33vw;
+    margin: 0 auto;
+    border-radius: 2.5vw;
+    border: solid 0.2vw #4187ae;
+    background-color: #fff;
+}
+
+.wrapper_form h1 {
+    font-size: 1.6vw;
+    margin: 4.5vw 0 3vw;
+}
+
+.form_green {
+    color: #009679;
+}
+
+.form_gray {
+    color: #181739;
+}
+
+.log_form label {
+    font-size: 1.2vw;
+    text-align: left;
+    float: left;
+    margin: 1vw;
+}
+
+.log_form input {
+    transition: 0.2s;
+    font-family: 'Inter';
+    font-size: 0.8vw;
+    font-weight: bolder;
+    color: rgb(116, 116, 116);
+    margin-bottom: 0.8vw;
+    width: 70%;
+    height: 2.4vw;
+    padding: 0 1vw;
+    border-radius: 0.5vw;
+    border: solid 0.1vw #009679;
+    background-color: #f8f9f9;
+}
+
+.log_form input:focus {
+    outline: none;
+    border: solid 0.1vw #03cca4;
+}
+
+.log_form button {
+    transition: 0.35s;
+    font-family: 'Inter';
+    font-size: 1.3vw;
+    letter-spacing: 0.02vw;
+    margin: 2vw 0 1vw;
+    width: 18.6vw;
+    height: 3.45vw;
+    border-radius: 1.6vw;
+    background-color: #05b593;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.damsg{
+    margin-top: 0.5vw;
+    font-size: 1vw;
+    font-weight: bold;
+    color: red;
+}
+
+.log_form button:hover {
+    background-color: #0a8169;
+}
+
+.wrapper_form h3 {
+    font-size: 0.9vw;
+}
+
+.reco_gray {
+    color: #6e7779;
+}
+
+.reco_green a{
+    transition: 0.2s;
+    text-decoration: none;
+    text-decoration-line: underline;
+    color:#18826f;
+}
+
+.reco_green a:hover{
+    text-decoration: none;
+    text-decoration-line: underline;
+    color:#04b995;
+}
+
+@media (max-width: 576px) {
+    body {
+        background-image: none;
+        background-color: #1f4e77;
+    }
+
+    .wrapper {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: none;
+    }
+
+    .wrapper_form {
+        width: 50vw;
+        height: 100vw;
+    }
+}
