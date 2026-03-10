@@ -1,4 +1,5 @@
-#Sistema de Gestión Web
+# Sistema de Gestión Web
+
 La aplicación es una plataforma web robusta diseñada para gestionar empresas, empleados y transacciones financieras (ingresos y egresos).
 
 🚀 Tecnologías Utilizadas
